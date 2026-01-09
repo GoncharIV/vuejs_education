@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2</title>
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container pt-5" id="app" v-cloak>
+        <div class="card center">
+            <div v-html="myHtml"></div>
+            <!-- <h2 v-text="title"></h2>
+            <h2 v-once>{{title}}</h2> -->
+            <!-- v-once не меняется если title изменили-->
+            <!-- <h2 v-pre>{{title}}</h2> -->
+            <!-- v-pre интерполяция не реботает и не меняется если title изменили-->
+            <!-- <ul class="list">
+                <li class="list-item" v-for="(item, idx) in 7">
+                   <strong>{{idx + 1}}</strong> {{item}}
+                </li>
+            </ul> -->
+            <div class="form-control">
+                <input type="text" @keyup.shift.enter.exact="addItem" ref="myInput">
+            </div>
+            <ul class="list" v-if="items.length">
+                <li 
+                 class="list-item"
+                  @click.right.prevent="remove(idx), log(item)"
+                   v-for="(item, idx) in items"
+                   :key="item">
+                    {{item}}&nbsp;
+                    <input type="text" @click.stop>
+                </li>
+            </ul>
+            <!-- <h3 v-else>empty</h3> -->
+            <h3 v-show="!items.length">empty</h3>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app2.js"></script>
+</body>
+</html>
